@@ -17,7 +17,7 @@ sys.path.append(BASE_DIR.child('apps'))
 SECRET_KEY = 'd$t8(4bqcsg2=-!8mb7xj&#-rfxaae9+yr4+cmfiw$$!*#aw10'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['adfire.herokuapp.com', 'localhost']
 
 
 # Application definition
