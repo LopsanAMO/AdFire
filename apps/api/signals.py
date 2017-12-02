@@ -17,7 +17,7 @@ firebase = pyrebase.initialize_app(config)
 @receiver(post_save, sender=Api)
 def send_data(sender, instance, created, **kwargs):
     data = {
-        'image': instance.publication_file.url,
+        'image': "https://adfire.herokuapp.com/{}".format(instance.publication_file.url),
         'date': str(instance.date),
         'final_date': str(instance.final_date),
         'time': 5000
