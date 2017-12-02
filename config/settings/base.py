@@ -110,3 +110,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+FIREBASE_API_KEY = 'AIzaSyCUESYlpQYbZY4skk_TuVuvOBWBCAduGOk'
+FIREBASE_DATABASE_URL = 'https://adfire-3e992.firebaseio.com'
+FIREBASE_DOMAIN = 'adfire-3e992.firebaseapp.com'
+FIREBASE_BUCKET = 'adfire-3e992.appspot.com'
