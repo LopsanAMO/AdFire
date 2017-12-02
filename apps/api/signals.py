@@ -17,9 +17,9 @@ firebase = pyrebase.initialize_app(config)
 @receiver(post_save, sender=Api)
 def send_data(sender, instance, created, **kwargs):
     data = {
-        'image': instance.publication_file.url,
-        'date': instance.date,
-        'final_date': instance.final_date
+        'image': instance.image.url,
+        'date': str(instance.date),
+        'final_date': str(instance.final_date)
     }
     db = firebase.database()
     db.child('info').push(data)
