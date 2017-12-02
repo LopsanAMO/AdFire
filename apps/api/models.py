@@ -12,8 +12,8 @@ class Usuario(User):
 class Api(models.Model):
     name = models.CharField(max_length=40)
     publication_file = models.FileField(upload_to='files')
-    date = models.DateField()
-    final_date = models.DateField()
+    date = models.DateTimeField()
+    final_date = models.DateTimeField()
     ad_type = models.CharField(max_length=20)
 
     def __str__(self):
