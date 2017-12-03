@@ -19,3 +19,9 @@ class Home(View):
         api.type = "hola"
         api.save()
         return redirect('/')
+
+
+class Test(View):
+    def get(self, request):
+        template_name = 'test.html'
+        return render(request, template_name)

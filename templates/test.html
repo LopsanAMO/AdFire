@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AdFire</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <!-- Vue -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- Firebase -->
+    <script src="https://gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+    <!-- VueFire -->
+    <script src="https://unpkg.com/vuefire/dist/vuefire.js"></script>
+  </head>
+  <body>
+    <div id="demo">
+      <img :src="image" alt="" id="image-ad">
+    </div>
+    <script>
+    var firebaseApp = firebase.initializeApp({
+      databaseURL: 'https://adfire-3e992.firebaseio.com'
+    });
+    var db = firebaseApp.database();
+    var adsRef = db.ref('info');
+    var imagePlaceholder = 'http://via.placeholder.com/1500x1250?text=Anunciate+en+AdFire';
+    var vm = new Vue({
+      el: '#demo',
+      data: {
+        image: imagePlaceholder,
+        images: [imagePlaceholder]
+      },
+      firebase: function() {
+          return {
+            ad: {
+              source: adsRef,
+              // optionally bind as an object
+              asObject: true,
+              // this is called once the data has been retrieved from firebase
+              readyCallback: this.updateImage
+            }
+          }
+
+      },
+      methods: {
+        updateImage: function() {
+          this.images = this.images.concat(Object.values(this.ad).map(ad => ad.image));
+          console.log(this.images);
+          this.image = this.images[1];
+          this.nextImage(2);
+        },
+        nextImage: function(index) {
+          var vm = this;
+          setTimeout(function(){
+            console.log(index);
+            vm.image = vm.images[index];
+            if(vm.image === undefined) {
+              vm.image = imagePlaceholder;
+            }
+            console.log(vm.image);
+            nextIndex = 0;
+            console.log("lengths", vm.images.length);
+            if (vm.images.length -1 > index) {
+              nextIndex = index + 1;
+            }
+            vm.nextImage(nextIndex);
+          }, 2000);
+        }
+      }
+    });
+    </script>
+  </body>
+</html>
