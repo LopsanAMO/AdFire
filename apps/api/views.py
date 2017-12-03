@@ -8,7 +8,6 @@ class Home(View):
         return render(request, template_name)
 
     def post(self, request):
-        import pudb; pudb.set_trace()
         init_date = request.POST.get('init')
         final = request.POST.get('final')
         image = request.FILES.get('archivo')
