@@ -20,7 +20,7 @@ def send_data(sender, instance, created, **kwargs):
         'image': "https://adfire.herokuapp.com{}".format(instance.publication_file.url),
         'date': str(instance.date),
         'final_date': str(instance.final_date),
-        'expiracy': 5000
+        'expiracy': 2000
     }
     db = firebase.database()
     db.child('info').push(data)
